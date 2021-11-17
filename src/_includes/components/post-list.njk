@@ -1,0 +1,22 @@
+{% for item in collections.posts %}
+	<article class="content__article content__article--list">
+		<header class="content__header">
+			<h2>
+				<a href="{{ item.url }}">{{ item.data.title }}</a>
+			</h2>
+			<div class="content__meta">
+				<time datetime="{{ item.date | w3DateFilter }}">{{ item.date | date("YYYY-MM-DD") }}</time>
+			</div>
+		</header>
+		{% if item.data.page.excerpt %}
+			{{ item.data.page.excerpt | md | safe}}
+		{% else %}
+			{{ item.templateContent | safe }}
+		{% endif %}
+		<footer>
+			<p>
+				<a href="{{ item.url }}" aria-label="Read {{ item.data.title }}">Read More</a>
+			</p>
+		</footer>
+	</article>
+{% endfor %}

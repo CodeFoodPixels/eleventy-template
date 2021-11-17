@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="preload"
+      href="/static/fonts/pressstart2p.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="crossorigin"
+    >
+    <title>{{ renderData.title or title }} // {{ site.name }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="{{ renderData.description or description or site.description}}"
+    >
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="apple-mobile-web-app-title" content="{{ site.name }}">
+    <meta name="application-name" content="{{ site.name }}">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="/static/css/dist.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="header">
+      <h1>Eleventy Template</h1>
+    </header>
+    <nav class="nav" role="navigation" aria-label="Site navigation">
+      <ul class="nav__content">
+        <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="/blog/" class="nav__link">Blog</a></li>
+      </ul>
+    </nav>
+    <main class="content" id="main-content" tabindex="-1">
+      {{ content | safe }}
+    </main>
+    <footer class="footer">
+      <p>&copy; {{ site.author }} {% year %}</p>
+    </footer>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("/service-worker.js");
+        });
+      }
+    </script>
+  </body>
+</html>
